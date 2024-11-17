@@ -16,6 +16,7 @@ const POEMS = [
 
 let poems = [];
 let currentIndex = 0;
+let currentFontSize = 1; // Base font size multiplier
 
 // DOM Elements
 const slider = document.getElementById('poemSlider');
@@ -24,10 +25,68 @@ const nextBtn = document.getElementById('nextBtn');
 const currentPageSpan = document.getElementById('currentPage');
 const totalPagesSpan = document.getElementById('totalPages');
 const themeToggle = document.querySelector('.theme-toggle');
+const randomBtn = document.getElementById('randomBtn');
+const shareBtn = document.getElementById('shareBtn');
+const fontSizeBtn = document.getElementById('fontSizeBtn');
+
+// Font size controls
+const MIN_FONT_SIZE = 0.8;
+const MAX_FONT_SIZE = 1.4;
+const FONT_SIZE_STEP = 0.2;
+
+function cycleFontSize() {
+    currentFontSize += FONT_SIZE_STEP;
+    if (currentFontSize > MAX_FONT_SIZE) {
+        currentFontSize = MIN_FONT_SIZE;
+    }
+    
+    const poemContent = document.querySelector('.poem-content');
+    if (poemContent) {
+        poemContent.style.fontSize = `${currentFontSize}em`;
+    }
+}
+
+// Random poem selection
+function showRandomPoem() {
+    const newIndex = Math.floor(Math.random() * poems.length);
+    // Ensure we don't get the same poem twice
+    currentIndex = newIndex === currentIndex && poems.length > 1 
+        ? (newIndex + 1) % poems.length 
+        : newIndex;
+    updateSlider();
+}
+
+// Share functionality
+async function sharePoem() {
+    const currentPoem = poems[currentIndex];
+    const shareText = `${currentPoem.title}\n\n${currentPoem.content}`;
+    
+    try {
+        if (navigator.share) {
+            await navigator.share({
+                title: currentPoem.title,
+                text: shareText
+            });
+        } else {
+            // Fallback to clipboard
+            await navigator.clipboard.writeText(shareText);
+            alert('Poem copied to clipboard!');
+        }
+    } catch (error) {
+        console.error('Error sharing:', error);
+        // Fallback to clipboard if sharing fails
+        try {
+            await navigator.clipboard.writeText(shareText);
+            alert('Poem copied to clipboard!');
+        } catch (clipboardError) {
+            console.error('Error copying to clipboard:', clipboardError);
+            alert('Unable to share or copy the poem.');
+        }
+    }
+}
 
 // Theme handling
 function initializeTheme() {
-    // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
@@ -43,21 +102,17 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
-    // Update the theme toggle button content based on current theme
     themeToggle.innerHTML = theme === 'dark' 
         ? '<i class="fas fa-sun"></i>' 
         : '<i class="fas fa-moon"></i>';
 }
-
-// Add theme toggle event listener
-themeToggle.addEventListener('click', toggleTheme);
 
 // Create poem element HTML
 function createPoemElement(poem) {
     return `
         <div class="poem-container">
             <h2 class="poem-title">${poem.title}</h2>
-            <div class="poem-content">${poem.content}</div>
+            <div class="poem-content" style="font-size: ${currentFontSize}em">${poem.content}</div>
         </div>
     `;
 }
@@ -102,6 +157,12 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Add control button event listeners
+randomBtn.addEventListener('click', showRandomPoem);
+shareBtn.addEventListener('click', sharePoem);
+fontSizeBtn.addEventListener('click', cycleFontSize);
+themeToggle.addEventListener('click', toggleTheme);
+
 // Loading state
 function showLoading() {
     slider.innerHTML = '<div class="loading">Loading poems...</div>';
@@ -121,7 +182,6 @@ function showError(message, details = '') {
 function initializeSlider() {
     showLoading();
     try {
-        // Use the embedded POEMS constant instead of loading from JSON
         poems = POEMS;
         updateSlider();
     } catch (error) {
@@ -132,6 +192,6 @@ function initializeSlider() {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    initializeTheme();  // Initialize theme first
-    initializeSlider(); // Then initialize the slider
+    initializeTheme();
+    initializeSlider();
 });
