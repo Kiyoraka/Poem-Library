@@ -119,18 +119,10 @@ To change fonts, update the Google Fonts link in `index.html` and modify the fon
 - Google Fonts
 - Font Awesome Icons
 
-## ✨ Future Enhancements
-
-- [ ] Search functionality
-- [ ] Categories/tags for poems
-- [ ] Social media sharing
-- [ ] Print functionality
-- [ ] Favorites system
-- [ ] Reading progress tracking
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License 
 
 ## 🤝 Contributing
 
@@ -142,7 +134,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👏 Acknowledgments
 
-- Poems sourced from various public domain collections
 - Inspired by classic poetry books and modern web design
 - Icons provided by Font Awesome
 - Fonts provided by Google Fonts
