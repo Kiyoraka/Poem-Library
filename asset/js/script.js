@@ -72,7 +72,7 @@ function showError(message) {
 async function initializeSlider() {
     showLoading();
     try {
-        const response = await fetch('./asset/poem/poems.json');
+        const response = await fetch('../poem/poems.json');
         if (!response.ok) {
             throw new Error('Failed to load poems');
         }
