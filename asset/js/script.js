@@ -178,7 +178,7 @@ function showError(message, details = '') {
     `;
 }
 
-// Initialize slider with embedded poems
+// Initialize slider with embedded poem
 function initializeSlider() {
     showLoading();
     try {
