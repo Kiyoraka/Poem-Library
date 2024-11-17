@@ -1,3 +1,19 @@
+// Poems data
+const POEMS = [
+    {
+        title: "The Wanderer's Lament",
+        content: "In shadows deep, I walk alone,\nA silent figure, cast in stone.\nMy heart a forge, my soul a flame,\nCrafting dreams, yet bearing shame.\nI've wandered realms, both near and far,\nSeeking truths, beneath each star.\nYet in my hands, no treasure gleams,\nOnly echoes, of shattered dreams.\nA thousand whispers, haunt my mind,\nOf paths untaken, left behind.\nIn solitude, I find my peace,\nYet yearn for wars, that never cease.\nSo here I stand, in twilight's glow,\nA wanderer, with naught to show.\nBut in my heart, a fire burns,\nFor in my soul, adventure yearns."
+    },
+    {
+        title: "The Programmer's Saga",
+        content: "In the heart of the code, I am the creator,\nCrafting worlds from lines, a digital equator.\nWith keystrokes as my sword, and pixels my shield,\nIn the realm of bytes, my fate is sealed.\nThrough the binary mist, I navigate,\nForging paths unknown, defying fate.\nIn the crucible of code, I've honed my craft,\nTo build, to shape, my passion's draft.\nI am the architect of virtual expanse,\nA weaver of dreams, in a digital dance.\nThrough endless nights, my mind does soar,\nCreating, innovating, always wanting more.\nThough unseen, my creations are real,\nA reflection of the thoughts I feel.\nIn this realm of bytes, I am king,\nA master of worlds, where I can sing.\nSo, as I code, my spirit unfurled,\nI am the programmer, shaping this world."
+    },
+    {
+        title: "The Creator's Path",
+        content: "In the depths of my mind, a world unfolds,\nWhere thoughts and dreams like rivers flow,\nI am the architect, the weaver of tales untold,\nIn my soul's forge, stories glow.\nI wield the pen, my sword of words,\nCrafting worlds from the fabric of thought,\nThrough trials and pain, my spirit girds,\nFor the battles fought and battles sought.\nIn the crucible of creation, I forge my art,\nA thousand blades of thought and feeling,\nUnknown to the world, but not to my heart,\nIn words, my truth and dreams are reeling.\nI have withstood the pain of a thousand nights,\nTo bring forth stories, to bring forth light,\nYet, these hands may never grasp the heights,\nBut through my words, I take flight.\nSo, as I write, my soul takes flight,\nUnlimited stories, unlimited worlds,\nIn the realm of imagination, I find my might,\nIn the tapestry of words, my flag unfurled."
+    }
+];
+
 let poems = [];
 let currentIndex = 0;
 
@@ -73,62 +89,18 @@ function showError(message, details = '') {
     `;
 }
 
-// Fallback poems in case JSON fails to load
-const fallbackPoems = [
-    {
-        title: "Fallback Poem",
-        content: "This is a fallback poem\nDisplayed when JSON fails to load\nPlease check your file path\nAnd try again"
-    }
-];
-
-// Initialize: Load poems from JSON file
-async function initializeSlider() {
+// Initialize slider with embedded poems
+function initializeSlider() {
     showLoading();
     try {
-        // Log the attempt
-        console.log('Attempting to fetch poems from:', '/asset/poem/poems.json');
-        
-        const response = await fetch('/asset/poem/poems.json');
-        console.log('Fetch response status:', response.status);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('Current location:', window.location.href);
-        console.log('Base URL:', baseUrl);
-        console.log('Full poem path:', poemPath);
-        console.log('Successfully loaded poems:', data.length, 'poems found');
-        
-        if (!Array.isArray(data)) {
-            throw new Error('Loaded data is not an array');
-        }
-        
-        poems = data;
+        // Use the embedded POEMS constant instead of loading from JSON
+        poems = POEMS;
         updateSlider();
-        
     } catch (error) {
-        console.error('Detailed error:', error);
-        
-        // Show specific error message based on error type
-        if (error.name === 'SyntaxError') {
-            showError('Invalid JSON format', 'The poems.json file contains invalid JSON. Please check the file format.');
-        } else if (error.message.includes('HTTP error')) {
-            showError('File not found', `Could not load poems.json. Please check if the file exists at ../poem/poems.json\nServer response: ${error.message}`);
-        } else {
-            showError('Failed to load poems', 'Please ensure you are running this through a local server (like Live Server in VS Code)');
-        }
-        
-        // Use fallback poems if available
-        console.log('Using fallback poems');
-        poems = fallbackPoems;
-        updateSlider();
+        console.error('Error initializing poems:', error);
+        showError('Failed to initialize poems', 'An unexpected error occurred.');
     }
 }
 
-// Add event listener for when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded, initializing slider...');
-    initializeSlider();
-});
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeSlider);
