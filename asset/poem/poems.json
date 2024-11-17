@@ -1,0 +1,15 @@
+[
+    {
+        "title": "The Road Not Taken",
+        "content": "Two roads diverged in a yellow wood,\nAnd sorry I could not travel both\nAnd be one traveler, long I stood\nAnd looked down one as far as I could\nTo where it bent in the undergrowth;"
+    },
+    {
+        "title": "Hope is the Thing with Feathers",
+        "content": "Hope is the thing with feathers\nThat perches in the soul,\nAnd sings the tune without the words,\nAnd never stops at all,"
+    },
+    {
+        "title": "Dreams",
+        "content": "Hold fast to dreams\nFor if dreams die\nLife is a broken-winged bird\nThat cannot fly.\n\nHold fast to dreams\nFor when dreams go\nLife is a barren field\nFrozen with snow."
+    }
+    /* Add more poems following the same structure */
+]
