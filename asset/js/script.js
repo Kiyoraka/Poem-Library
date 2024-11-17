@@ -96,6 +96,9 @@ async function initializeSlider() {
         }
         
         const data = await response.json();
+        console.log('Current location:', window.location.href);
+        console.log('Base URL:', baseUrl);
+        console.log('Full poem path:', poemPath);
         console.log('Successfully loaded poems:', data.length, 'poems found');
         
         if (!Array.isArray(data)) {
