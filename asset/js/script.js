@@ -23,6 +23,34 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const currentPageSpan = document.getElementById('currentPage');
 const totalPagesSpan = document.getElementById('totalPages');
+const themeToggle = document.querySelector('.theme-toggle');
+
+// Theme handling
+function initializeTheme() {
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+}
+
+function updateThemeIcon(theme) {
+    // Update the theme toggle button content based on current theme
+    themeToggle.innerHTML = theme === 'dark' 
+        ? '<i class="fas fa-sun"></i>' 
+        : '<i class="fas fa-moon"></i>';
+}
+
+// Add theme toggle event listener
+themeToggle.addEventListener('click', toggleTheme);
 
 // Create poem element HTML
 function createPoemElement(poem) {
@@ -102,5 +130,8 @@ function initializeSlider() {
     }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeSlider);
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeTheme();  // Initialize theme first
+    initializeSlider(); // Then initialize the slider
+});
