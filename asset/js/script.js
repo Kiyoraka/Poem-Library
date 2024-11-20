@@ -11,6 +11,18 @@ const POEMS = [
     {
         title: "The Creator's Path",
         content: "In the depths of my mind, a world unfolds,\nWhere thoughts and dreams like rivers flow,\nI am the architect, the weaver of tales untold,\nIn my soul's forge, stories glow.\nI wield the pen, my sword of words,\nCrafting worlds from the fabric of thought,\nThrough trials and pain, my spirit girds,\nFor the battles fought and battles sought.\nIn the crucible of creation, I forge my art,\nA thousand blades of thought and feeling,\nUnknown to the world, but not to my heart,\nIn words, my truth and dreams are reeling.\nI have withstood the pain of a thousand nights,\nTo bring forth stories, to bring forth light,\nYet, these hands may never grasp the heights,\nBut through my words, I take flight.\nSo, as I write, my soul takes flight,\nUnlimited stories, unlimited worlds,\nIn the realm of imagination, I find my might,\nIn the tapestry of words, my flag unfurled."
+    },
+    {
+        title: "Love's Eternal Flame",
+        content: "In tender hues, the heart does sing,\nA fragile yet eternal spring.\nIts whispers soft, like morning dew,\nA bond unbroken, pure and true.\n\nThrough tempests wild, it holds its ground,\nA haven where all wounds are bound.\nThough fleeting moments may depart,\nLove lingers, anchored in the heart.\n\nNo jewel nor crown can hold its worth,\nThis gentle force that shapes the earth.\nIt bends and breaks, yet still will bloom,\nA light undimmed by darkest gloom.\n\nSo let it guide, through joy, through strife,\nFor love’s the marrow of this life."
+    },
+    {
+        title: "The Sands of Time",
+        content: "A fleeting shadow, silent, swift,\nThe sands of time, an endless drift.\nIt carves the mountains, shapes the seas,\nAnd dances through the ancient trees.\n\nNo king can halt its steady tread,\nNo prayer can raise what it has bled.\nYet in its march, a lesson lies:\nEach fleeting moment never dies.\n\nFor though it steals, it also gives,\nThe memories where spirit lives.\nEmbrace the seconds, let them fly,\nFor even stars must fade and die.\n\nIn time’s great weave, we find our place,\nA fleeting mark, a whispered trace."
+    },
+    {
+        title: "The Heart of Family",
+        content: "A bond that time cannot erase,\nA fortress built in love’s embrace.\nThrough trials fierce, through joy’s bright call,\nThey stand beside us, one and all.\n\nRoots tangled deep, yet ever strong,\nTheir laughter shapes our lifelong song.\nThough paths may part, the heart remains,\nTied firm with love through joys and pains.\n\nA father’s hand, a mother’s care,\nA sibling’s laughter, memories rare.\nThey are the compass, guiding true,\nThe hearth to which we all renew.\n\nFor in their arms, we find our rest,\nA family’s love, life’s greatest quest."
     }
 ];
 
